@@ -4,7 +4,6 @@
   </a-config-provider>
 
 </template>
-<!-- defghjkyutr -->
 <script setup>
 import { watch } from 'vue'
 import { useI18n } from 'vue-i18n'
@@ -13,7 +12,7 @@ import { useAppStore } from '@/stores/app'
 const { locale } = useI18n()
 const appStore = useAppStore()
 
-// Til o'zgarganda i18n yangilanadi
+// Til o'zgarganda i18n yangilanadijhgfcgtyhu
 watch(() => appStore.currentLang, (lang) => {
   locale.value = lang
 }, { immediate: true })
