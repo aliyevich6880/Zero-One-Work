@@ -1,6 +1,6 @@
 <template>
   <main
-    class="!pt-18 p-4 md:p-6 flex flex-col gap-6 lg:pl-[270px] md:pl-[270px] pl-[80px]"
+    class="!pt-18 p-4 md:p-6 flex flex-col gap-6 md:pl-[270px]"
   >
     <section class="grid grid-cols-1 2xl:grid-cols-[minmax(0,1fr)_360px] gap-6">
       <div class="flex flex-col gap-4 min-w-0">

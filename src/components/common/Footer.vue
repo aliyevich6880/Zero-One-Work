@@ -1,8 +1,8 @@
 <template>
 <footer
-    class="left-0 right-0 mx-auto w-[calc(80%-0px)] sm:w-[calc(80%-0px)] auth-footer flex items-center justify-between px-10 py-[18px] text-[12px] text-[#718096]"
+    class="left-0 right-0 mx-auto w-full max-w-[1200px] auth-footer flex flex-col sm:flex-row items-center sm:items-start justify-between gap-3 px-4 sm:px-10 py-[18px] text-[12px] text-[#718096]"
   >
-    <span>
+    <span class="text-center sm:text-left break-words">
       © 2024, {{ $t("footer.madeWith") }} ❤️ {{ $t("footer.by") }}
       <a
         href="#"
@@ -16,7 +16,7 @@
         >{{ $t("footer.simmmple") }}</a
       >
     </span>
-      <div class="auth-footer-links flex gap-6">
+      <div class="auth-footer-links flex flex-wrap items-center justify-center sm:justify-end gap-4 sm:gap-6">
       <a
         href="#"
         class="text-[#718096] font-medium no-underline hover:text-[#1A202C]"

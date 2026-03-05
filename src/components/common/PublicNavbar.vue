@@ -1,15 +1,32 @@
 <template>
 <header
   :class="[
-    'fixed top-0 left-[calc(5rem+1px)] md:left-[calc(16rem+1px)] right-0 z-50 transition-all duration-300',
+    'fixed top-0 left-0 md:left-[calc(16rem+1px)] right-0 z-50 transition-all duration-300',
     'bg-[#F8F9FA]'
   ]"
 >
-    <nav class="w-full px-4 md:px-8">
+    <nav class="w-full px-3 sm:px-4 md:px-8">
       <div class="flex justify-between items-center h-16">
         <!-- LEFT -->
-        <div class="flex flex-col gap-1 min-w-0">
-          <span class="flex items-center whitespace-nowrap text-xs sm:text-sm">
+        <div class="flex items-center gap-1.5 sm:gap-2 min-w-0">
+          <button
+            class="md:hidden w-9 h-9 rounded-lg border border-[#E2E8F0] bg-white text-[#1A202C] flex items-center justify-center"
+            @click="$emit('toggle-sidebar')"
+          >
+            <svg
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="2"
+              class="w-5 h-5"
+            >
+              <line x1="3" y1="6" x2="21" y2="6" />
+              <line x1="3" y1="12" x2="21" y2="12" />
+              <line x1="3" y1="18" x2="21" y2="18" />
+            </svg>
+          </button>
+          <div class="flex flex-col gap-1 min-w-0">
+          <span class="hidden min-[361px]:flex items-center whitespace-nowrap text-xs sm:text-sm">
             <p class="px-[4px] py-[2px] font-medium text-gray-700 !m-0">
               {{ $t("nav.pages") }}
             </p>
@@ -18,12 +35,13 @@
             <p class="px-[4px] py-[2px] !m-0">{{ $t(currentPageName) }}</p>
           </span>
           <!-- Dinamik h3 -->
-          <h3 class="pl-[4px] !m-0 whitespace-nowrap !font-semibold sm:text-base">
+          <h3 class="pl-[4px] !m-0 whitespace-nowrap !font-semibold text-sm sm:text-base">
             {{ $t(currentPageName) }}
           </h3>
+          </div>
         </div>
         <!-- RIGHT -->
-        <div class="flex items-center gap-3">
+        <div class="flex items-center gap-1.5 sm:gap-3">
           <!-- Search - faqat lg da -->
           <div class="hidden lg:block">
             <a-input
@@ -48,7 +66,7 @@
           <!-- Language -->
           <a-dropdown placement="bottomCenter">
             <span
-              class="flex items-center gap-[6px] px-3 py-2 text-[10px] font-semibold text-black uppercase tracking-[0.5px] rounded-lg cursor-pointer select-none transition-all duration-200 hover:bg-gray-100"
+              class="flex items-center gap-[6px] px-2.5 sm:px-3 py-2 text-[10px] font-semibold text-black uppercase tracking-[0.5px] rounded-lg cursor-pointer select-none transition-all duration-200 hover:bg-gray-100"
             >
               <GlobalOutlined class="text-[12px]" />
               {{ currentLang.toUpperCase() }}
@@ -213,6 +231,7 @@ import {
   SettingOutlined,
   BellOutlined,
 } from "@ant-design/icons-vue";
+defineEmits(["toggle-sidebar"]);
 const appStore = useAppStore();
 const authStore = useAuthStore();
 const router = useRouter();

@@ -1,9 +1,12 @@
 <template>
   <aside
-    class="h-screen overflow-y-auto w-20 md:w-64 bg-[rgb(248,249,250)] p-3 md:p-4 flex flex-col"
+    :class="[
+      'h-screen overflow-y-auto bg-[rgb(248,249,250)] flex flex-col',
+      mobileExpanded ? 'w-64 p-4' : 'w-20 md:w-64 p-3 md:p-4',
+    ]"
   >
     <div
-      class="flex items-center justify-center md:justify-start gap-3 mb-6 border-b border-[#E2E8F0] pb-4"
+      class="flex items-center justify-center md:justify-start gap-3 mb-4 border-b border-[#E2E8F0] pb-3"
     >
       <div
         class="w-9 h-9  rounded-lg flex items-center justify-center shrink-0"
@@ -34,7 +37,10 @@
         </svg>
       </div>
       <span
-        class="hidden md:block text-[14px] font-bold text-[#1A202C] uppercase tracking-[1px] whitespace-nowrap font-semibold"
+        :class="[
+          mobileExpanded ? 'block' : 'hidden md:block',
+          'text-[14px] font-bold text-[#1A202C] uppercase tracking-[1px] whitespace-nowrap font-semibold',
+        ]"
       >
         {{ $t("sidebar.brand") }}
       </span>
@@ -48,7 +54,7 @@
       <a-menu-item
         v-for="item in mainItems"
         :key="item.key"
-        class="!rounded-lg !h-auto !leading-none !py-3 !px-4 !mb-2"
+        class="!rounded-lg !h-auto !leading-none !py-2.5 !px-3.5"
         @click="go(item.to)"
       >
         <template #icon>
@@ -59,7 +65,10 @@
     </a-menu>
 
     <p
-      class="hidden md:block text-[12px] font-bold text-[#1A202C] uppercase tracking-[1px] mt-5 mb-2 px-3"
+      :class="[
+        mobileExpanded ? 'block' : 'hidden md:block',
+        'text-[12px] font-bold text-[#1A202C] uppercase tracking-[1px] mt-3 mb-1 px-3',
+      ]"
     >
       {{ $t("nav.accountPages") }}
     </p>
@@ -73,7 +82,7 @@
       <a-menu-item
         v-for="item in accountItems"
         :key="item.key"
-        class="!rounded-lg !h-auto !leading-none !py-3 !px-4 !mb-2"
+        class="!rounded-lg !h-auto !leading-none !py-2.5 !px-3.5"
         @click="go(item.to)"
       >
         <template #icon>
@@ -83,8 +92,8 @@
       </a-menu-item>
     </a-menu>
 
-    <div class="hidden md:block pt-6 mt-auto">
-      <div class="relative rounded-2xl overflow-hidden p-5 bg-[#4FD1C5]">
+    <div :class="[mobileExpanded ? 'block' : 'hidden md:block', 'pt-3 mt-auto']">
+      <div class="relative rounded-2xl overflow-hidden p-4 bg-[#4FD1C5]">
         <div
           class="w-10 h-10 bg-white rounded-lg flex items-center justify-center mb-3 relative z-10"
         >
@@ -116,6 +125,13 @@
 <script setup>
 import { computed } from "vue";
 import { useRoute, useRouter } from "vue-router";
+
+defineProps({
+  mobileExpanded: {
+    type: Boolean,
+    default: false,
+  },
+});
 
 const route = useRoute();
 const router = useRouter();
@@ -233,8 +249,8 @@ function go(path) {
 <style scoped>
 /* DEFAULT ITEM */
 .sidebar-menu :deep(.ant-menu-item) {
-    border-radius: 12px;
-  margin: 6px 10px;
+  border-radius: 12px;
+  margin: 4px 0;
   transition: all 0.2s ease;
 
 }
@@ -292,7 +308,7 @@ function go(path) {
 /* DEFAULT ITEM */
 .sidebar-menu :deep(.ant-menu-item) {
   border-radius: 12px;
-  margin: 6px 10px;
+  margin: 4px 0;
   transition: all 0.2s ease;
 }
 
@@ -300,6 +316,5 @@ function go(path) {
 .sidebar-menu :deep(.ant-menu-item-selected) {
   background: #ffffff !important;
   box-shadow: 0 4px 10px rgba(0, 0, 0, 0.05);
-  transform: translateX(4px);
 }
 </style>

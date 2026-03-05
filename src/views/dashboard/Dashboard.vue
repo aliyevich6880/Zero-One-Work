@@ -1,6 +1,6 @@
 <template>
   <main
-    class="!pt-18 p-4 md:p-6 flex flex-col gap-6 lg:pl-[270px] md:pl-[270px] pl-[80px]"
+    class="!pt-18 p-4 md:p-6 flex flex-col gap-6 md:pl-[270px]"
   >
     <!-- STATS CARDS -->
     <div class="grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-4 gap-4">

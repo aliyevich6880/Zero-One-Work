@@ -1,7 +1,7 @@
 ﻿<template>
-  <nav class="fixed top-0 left-0 right-0 z-50 w-full px-4 sm:px-6 lg:px-8 mt-2">
+  <nav class="fixed top-0 left-0 right-0 z-[70] w-full px-4 sm:px-6 lg:px-8 mt-2">
     <div
-      class="max-w-[1300px] mx-auto rounded-lg bg-white/90 backdrop-blur-md border border-[#E2E8F0]/80 shadow-[0_4px_15px_rgba(0,0,0,0.1)]"
+      class="relative max-w-[1300px] mx-auto rounded-lg bg-white/90 backdrop-blur-md border border-[#E2E8F0]/80 shadow-[0_4px_15px_rgba(0,0,0,0.1)]"
     >
       <div
         class="min-h-[64px] px-4 lg:px-6 lg:min-h-[70px] flex items-center justify-between gap-2 sm:gap-3 lg:gap-8"
@@ -165,7 +165,7 @@
       >
         <div
           v-if="mobileMenuOpen"
-          class="lg:hidden flex flex-col border-t border-[#E2E8F0] p-[10px] bg-[rgba(255,255,255,0.98)]"
+          class="lg:hidden fixed top-[78px] left-4 right-4 z-[80] flex flex-col border border-[#E2E8F0] rounded-xl p-[10px] bg-[rgba(255,255,255,0.98)] shadow-lg"
         >
           <router-link
             v-for="link in navLinks"
@@ -174,7 +174,12 @@
             class="flex items-center gap-2 px-3 py-2.5 rounded-[10px] text-[#4A5568] no-underline text-[13px] font-semibold hover:bg-[#EDF2F7] hover:text-[#1A202C] transition-colors"
             @click="mobileMenuOpen = false"
           >
-            <component :is="link.icon" class="text-[15px]" />
+            <template v-if="link.to === '/auth/login'">
+              <component :is="link.icon" class="text-[15px]" />
+            </template>
+            <template v-else>
+              <span v-html="link.icon" class="flex items-center"></span>
+            </template>
             <span>{{ $t(link.label) }}</span>
           </router-link>
         </div>
